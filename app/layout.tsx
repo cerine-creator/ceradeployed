@@ -9,24 +9,24 @@ import './globals.css';
 import jsonMetadata from '../metadata.json';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ceradz.com'),
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://ceradz.vercel.app'),
   title: jsonMetadata.title,
   description: jsonMetadata.description,
   keywords: jsonMetadata.keywords,
   authors: [{ name: 'Cera' }],
   alternates: {
-    canonical: 'https://ceradz.com/',
+    canonical: '/',
   },
   openGraph: {
     type: 'website',
-    url: 'https://ceradz.com/',
+    url: '/',
     title: 'Cera — Votre idée, mon code, votre succès en ligne',
     description: 'Sites vitrines, boutiques en ligne et solutions numériques sur mesure, conçus pas à pas avec vous, à Alger et partout en Algérie.',
     siteName: 'Cera',
     locale: 'fr_DZ',
     images: [
       {
-        url: 'https://ceradz.com/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Cera — Solutions Digitales en Algérie',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Cera — Votre idée, mon code, votre succès en ligne',
     description: 'Sites vitrines, boutiques en ligne et solutions numériques sur mesure, conçus pas à pas avec vous, à Alger et partout en Algérie.',
-    images: ['https://ceradz.com/og-image.png'],
+    images: ['/og-image.png'],
   },
   icons: {
     icon: [
