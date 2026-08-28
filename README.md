@@ -31,9 +31,13 @@ A general-purpose Next.js web application template with database initialization 
 2. **Environment variables**:
    Copy `.env.example` to `.env` and configure at minimum `DATABASE_URL`. Umami analytics variables (`NEXT_PUBLIC_UMAMI_SCRIPT_URL`, `NEXT_PUBLIC_UMAMI_WEBSITE_ID`) are optional and only injected in production.
 
-3. **Run development server** (port 13000):
+3. **Run development server** (port 1390):
    ```bash
    pnpm dev
+   # Or if pnpm is not installed globally:
+   npx pnpm dev
+   # Or with Next.js directly:
+   npx next dev -p 1390
    ```
 
 4. **Verify changes**:
@@ -57,4 +61,4 @@ A general-purpose Next.js web application template with database initialization 
 - `hooks/` — Shared hooks (`use-mobile.ts`, `use-toast.ts`).
 - `utils/` — `cn.ts` (clsx + tailwind-merge).
 - `docs/` — `AI_GUIDE.md` (AI/developer conventions).
-- `Dockerfile` — Multi-stage node:22-slim build exposing port 13000.
+- `Dockerfile` — Multi-stage node:22-slim build exposing port 1390.

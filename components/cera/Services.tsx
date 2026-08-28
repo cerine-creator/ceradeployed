@@ -1,4 +1,4 @@
-import { Store, ShoppingCart, QrCode, RefreshCw, Wrench } from 'lucide-react';
+import { Store, ShoppingCart, QrCode, RefreshCw, Wrench, ShieldCheck } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { MouseGlowCard } from './MouseGlowCard';
 
@@ -6,7 +6,9 @@ const SERVICES = [
   {
     icon: Store,
     title: 'Sites vitrines',
-    text: 'Pour cliniques dentaires, restaurants, artisans, professions libérales et petites entreprises.',
+    hook: 'Vos clients vous cherchent sur Google avant de vous appeler — s\u2019ils ne vous trouvent pas, ils appellent votre concurrent.',
+    text: 'Un site vitrine professionnel qui vous rend visible, crédible et facile à contacter. Conçu pour cliniques, restaurants, artisans et professions libérales.',
+    price: 'À partir de 20 000 DA',
     details: [
       'Design sur mesure',
       'Pages essentielles : accueil, services, contact',
@@ -17,8 +19,10 @@ const SERVICES = [
   },
   {
     icon: ShoppingCart,
-    title: 'Sites e-commerce',
-    text: 'Catalogue produits, panier, commande et paiement à la livraison inclus.',
+    title: 'Boutiques e-commerce',
+    hook: 'Combien de ventes perdez-vous parce que votre catalogue n\u2019existe que sur Instagram ?',
+    text: 'Une vraie boutique en ligne où vos clients commandent en quelques clics, paiement à la livraison inclus — sans dépendre des algorithmes des réseaux sociaux.',
+    price: 'À partir de 40 000 DA',
     details: [
       'Catalogue produits avec photos et prix',
       'Panier et système de commande',
@@ -30,7 +34,8 @@ const SERVICES = [
   {
     icon: QrCode,
     title: 'QR codes',
-    text: 'Création de QR codes personnalisés pour menus, cartes de visite digitales ou accès rapide à votre site.',
+    hook: 'Un menu qui traîne, une carte qui se perd — vos clients veulent l\u2019info tout de suite, sur leur téléphone.',
+    text: 'Des QR codes personnalisés pour votre menu, votre carte de visite ou votre site, accessibles en un scan.',
     details: [
       'Menus de restaurants',
       'Cartes de visite digitales',
@@ -40,7 +45,8 @@ const SERVICES = [
   {
     icon: RefreshCw,
     title: 'Renouvellement de sites',
-    text: 'Modernisation de sites anciens : nouveau design, vitesse et mise à jour du contenu.',
+    hook: 'Un site lent ou dépassé fait plus de mal qu\u2019un site absent — il donne une mauvaise première impression.',
+    text: 'On modernise votre site existant : design actuel, chargement rapide, contenu à jour.',
     details: [
       'Nouveau design moderne',
       'Meilleure vitesse de chargement',
@@ -49,9 +55,23 @@ const SERVICES = [
     ],
   },
   {
+    icon: ShieldCheck,
+    title: 'Maintenance & audit',
+    hook: 'Un site qu\u2019on abandonne après la livraison finit par tomber en panne, se faire pirater, ou juste devenir invisible sur Google.',
+    text: 'Un suivi régulier pour garder votre site rapide, sécurisé et à jour — plusieurs formules selon vos besoins.',
+    price: 'À partir de 5 000 DA',
+    details: [
+      'Mises à jour de sécurité',
+      'Surveillance des performances',
+      'Sauvegarde régulière',
+      'Support technique réactif',
+    ],
+  },
+  {
     icon: Wrench,
     title: 'Solutions sur mesure',
-    text: 'Système de gestion restaurant, prise de rendez-vous en ligne, et plus selon votre besoin.',
+    hook: 'Trop de temps perdu au téléphone pour gérer les rendez-vous ou les commandes ?',
+    text: 'Des outils sur mesure — gestion de commandes, prise de rendez-vous en ligne — pensés pour votre activité, pas un logiciel générique.',
     details: [
       'Système de gestion pour restaurant (commandes + suivi de stock)',
       'Plateforme de prise de rendez-vous (clinique, salon)',
@@ -88,7 +108,13 @@ export function Services() {
                 <h3 className="mt-5 font-display text-lg font-bold text-cera-ink">
                   {service.title}
                 </h3>
+                <p className="mt-2 text-[13px] font-medium italic leading-relaxed text-cera-ink/60">
+                  {service.hook}
+                </p>
                 <p className="mt-2 text-sm leading-relaxed text-cera-muted">{service.text}</p>
+                {service.price && (
+                  <p className="mt-3 text-sm font-bold text-cera-emerald">{service.price}</p>
+                )}
                 <ul className="mt-5 flex flex-col gap-2 border-t border-cera-border pt-5">
                   {service.details.map((d) => (
                     <li key={d} className="flex gap-2 text-[13px] leading-relaxed text-cera-ink/80">

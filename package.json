@@ -7,9 +7,9 @@
     "pnpm": "10.33.4"
   },
   "scripts": {
-    "dev": "next dev -p 13000",
+    "dev": "next dev -p 1390",
     "build": "next build",
-    "start": "next start -p 13000",
+    "start": "next start -p 1390",
     "test": "node --import tsx --test lib/request.test.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",

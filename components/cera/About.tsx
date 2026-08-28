@@ -19,7 +19,8 @@ export function About() {
               À propos
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-              Une formation solide, une passion concrète
+              Je ne vends pas des sites.{' '}
+              <span className="text-cera-emerald-light">Je résous des problèmes.</span>
             </h2>
           </div>
         </Reveal>
@@ -27,13 +28,19 @@ export function About() {
         <Reveal>
           <div className="mx-auto mt-12 max-w-2xl space-y-5 text-center text-[15px] leading-relaxed text-white/70">
             <p>
-              Parcours issu d&apos;une formation universitaire complétée par un
-              apprentissage autodidacte en développement web.
+              Trop d&apos;entreprises algériennes perdent des clients simplement parce
+              qu&apos;elles sont invisibles en ligne — ou pire, visibles mais avec un site
+              lent, dépassé, qui donne une mauvaise image.
             </p>
             <p>
-              Ce qui me passionne : coder et trouver des solutions concrètes aux
-              problèmes réels de mes clients — pas juste livrer un site, mais un outil
-              qui fait avancer leur activité.
+              Je conçois des sites qui font le travail : être trouvé, être crédible,
+              convertir un visiteur en client. Pas un joli objet qu&apos;on montre une fois
+              et qu&apos;on oublie.
+            </p>
+            <p>
+              Chaque projet suit le même principe : je reste disponible du premier échange
+              jusqu&apos;à la livraison — et après. Un ajustement à faire six mois plus
+              tard ? Je réponds.
             </p>
           </div>
         </Reveal>
