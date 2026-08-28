@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ceradz.com/sitemap.xml
+Sitemap: https://ceradz.vercel.app/sitemap.xml
