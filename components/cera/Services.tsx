@@ -8,7 +8,7 @@ const SERVICES = [
     title: 'Sites vitrines',
     hook: 'Vos clients vous cherchent sur Google avant de vous appeler — s\u2019ils ne vous trouvent pas, ils appellent votre concurrent.',
     text: 'Un site vitrine professionnel qui vous rend visible, crédible et facile à contacter. Conçu pour cliniques, restaurants, artisans et professions libérales.',
-    price: 'À partir de 20 000 DA',
+
     details: [
       'Design sur mesure',
       'Pages essentielles : accueil, services, contact',
@@ -22,7 +22,7 @@ const SERVICES = [
     title: 'Boutiques e-commerce',
     hook: 'Combien de ventes perdez-vous parce que votre catalogue n\u2019existe que sur Instagram ?',
     text: 'Une vraie boutique en ligne où vos clients commandent en quelques clics, paiement à la livraison inclus — sans dépendre des algorithmes des réseaux sociaux.',
-    price: 'À partir de 40 000 DA',
+
     details: [
       'Catalogue produits avec photos et prix',
       'Panier et système de commande',
@@ -59,7 +59,7 @@ const SERVICES = [
     title: 'Maintenance & audit',
     hook: 'Un site qu\u2019on abandonne après la livraison finit par tomber en panne, se faire pirater, ou juste devenir invisible sur Google.',
     text: 'Un suivi régulier pour garder votre site rapide, sécurisé et à jour — plusieurs formules selon vos besoins.',
-    price: 'À partir de 5 000 DA',
+
     details: [
       'Mises à jour de sécurité',
       'Surveillance des performances',
