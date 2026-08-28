@@ -83,8 +83,8 @@ export default function RootLayout({
       <body className={`antialiased ${introFont.variable}`}>
         {children}
         <Toaster position="top-center" richColors />
-        <HappySeedsWatermark />
-        <AgentationGuard />
+        {process.env.NODE_ENV === 'development' && <HappySeedsWatermark />}
+        {process.env.NODE_ENV === 'development' && <AgentationGuard />}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

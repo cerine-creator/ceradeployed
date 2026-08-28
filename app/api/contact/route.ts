@@ -12,6 +12,7 @@ const schema = z.object({
   social: z.string().optional().or(z.literal('')),
   projectType: z.string().min(1),
   message: z.string().min(10),
+  website: z.string().optional(), // honeypot field
 });
 
 export async function POST(request: NextRequest) {
@@ -22,7 +23,12 @@ export async function POST(request: NextRequest) {
       throw new ValidationError('Données de formulaire invalides');
     }
 
-    const { name, phone, email, social, projectType, message } = parsed.data;
+    const { name, phone, email, social, projectType, message, website } = parsed.data;
+
+    // Honeypot check: if bot filled the hidden field, silently pretend success
+    if (website) {
+      return NextResponse.json({ success: true, data: { id: 'ok' } }, { status: 201 });
+    }
 
     const [lead] = await db
       .insert(contactLeads)

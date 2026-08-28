@@ -31,6 +31,7 @@ const schema = z.object({
   social: z.string().optional().or(z.literal('')),
   projectType: z.string().min(1, 'Choisissez un type de projet'),
   message: z.string().min(10, 'Décrivez votre projet en quelques mots (10 caractères min.)'),
+  website: z.string().max(0).optional(), // honeypot field — must stay empty
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -53,6 +54,7 @@ export function ContactForm() {
       social: '',
       projectType: '',
       message: '',
+      website: '',
     },
   });
 
@@ -85,6 +87,11 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 text-left">
+      {/* Honeypot field — hidden from real users, catches bots */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
+        <label htmlFor="website">Website</label>
+        <input id="website" tabIndex={-1} autoComplete="off" {...register('website')} />
+      </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label="Nom complet" required error={errors.name?.message}>
           <Input placeholder="Votre nom" className={inputClass} {...register('name')} />

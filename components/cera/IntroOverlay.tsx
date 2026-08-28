@@ -23,6 +23,7 @@ export function IntroOverlay() {
   const [stepIndex, setStepIndex] = useState(0);
   const [typed, setTyped] = useState('');
   const [leaving, setLeaving] = useState(false);
+  const [progress, setProgress] = useState(0);
   const finishRef = useRef<() => void>(() => {});
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export function IntroOverlay() {
       if (finished) return;
       finished = true;
       pendingTimers.forEach(clearTimeout);
+      setProgress(100);
       setLeaving(true);
       document.body.classList.remove('intro-lock');
       setTimeout(() => setMounted(false), 750);
@@ -51,6 +53,8 @@ export function IntroOverlay() {
       const step = STEPS[i];
       setStepIndex(i);
       setTyped('');
+      // Update progress based on step index (distribute evenly to ~90%)
+      setProgress(Math.min(90, Math.round(((i + 1) / STEPS.length) * 90)));
 
       if (step.kind === 'brand' || step.kind === 'instant') {
         if (step.kind === 'instant') setTyped(step.text ?? '');
@@ -136,6 +140,17 @@ export function IntroOverlay() {
       <p className="absolute bottom-9 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.2em] text-white/35 opacity-0 animate-[cera-fade-in_.5s_ease_.8s_forwards]">
         Cliquez pour continuer
       </p>
+
+      {/* Progress bar */}
+      <div className="absolute bottom-0 left-0 h-[2px] w-full bg-white/5">
+        <div
+          className="h-full bg-gradient-to-r from-cera-emerald to-cera-emerald-light"
+          style={{
+            width: `${progress}%`,
+            transition: 'width 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        />
+      </div>
     </div>
   );
 }
