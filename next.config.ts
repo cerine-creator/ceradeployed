@@ -14,10 +14,6 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
-  env: {
-    PROJECT_ID: process.env.HAPPYSEEDS_PROJECT_ID ?? '',
-    REACTUS_BASE_URL: process.env.REACTUS_BASE_URL ?? '',
-  },
   serverExternalPackages: [],
   allowedDevOrigins: [
     '**.*.*',

@@ -60,15 +60,18 @@ export function Hero() {
               Réservez votre consultation gratuite
               <ArrowRight size={16} />
             </MagneticButton>
-            <MagneticButton
-              href="#portfolio"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white hover:border-white/60 hover:bg-white/5"
-            >
-              Voir nos réalisations
-            </MagneticButton>
+            {process.env.NEXT_PUBLIC_ENABLE_REALISATIONS === 'true' && (
+              <MagneticButton
+                href="#portfolio"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold text-white hover:border-white/60 hover:bg-white/5"
+              >
+                Voir nos réalisations
+              </MagneticButton>
+            )}
           </div>
         </Reveal>
       </div>
     </section>
   );
 }
+

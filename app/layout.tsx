@@ -3,7 +3,6 @@ import Script from 'next/script';
 import { Cormorant_Garamond } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { AgentationGuard } from '@/components/AgentationGuard';
-import { HappySeedsWatermark } from '@/components/HappySeedsWatermark';
 import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 import jsonMetadata from '../metadata.json';
@@ -79,10 +78,10 @@ export default function RootLayout({
       <body className={`antialiased ${introFont.variable}`}>
         {children}
         <Toaster position="top-center" richColors />
-        {process.env.NODE_ENV === 'development' && <HappySeedsWatermark />}
         {process.env.NODE_ENV === 'development' && <AgentationGuard />}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   );
 }
+

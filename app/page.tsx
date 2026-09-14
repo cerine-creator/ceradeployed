@@ -14,6 +14,9 @@ import { Footer } from '@/components/cera/Footer';
 import { FloatingActions } from '@/components/cera/FloatingActions';
 
 export default function Home() {
+  const showPortfolio = process.env.NEXT_PUBLIC_ENABLE_REALISATIONS === 'true';
+  const showPricing = process.env.NEXT_PUBLIC_ENABLE_TARIFS === 'true';
+
   return (
     <>
       <IntroOverlay />
@@ -24,9 +27,9 @@ export default function Home() {
         <Stats />
         <WhyCera />
         <Services />
-        <Portfolio />
+        {showPortfolio && <Portfolio />}
         <About />
-        <Pricing />
+        {showPricing && <Pricing />}
         <Faq />
         <Contact />
       </main>
@@ -35,3 +38,5 @@ export default function Home() {
     </>
   );
 }
+
+

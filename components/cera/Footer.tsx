@@ -1,16 +1,27 @@
 import { Instagram, Facebook } from 'lucide-react';
 import { Logo } from './Logo';
 
-const LINKS = [
+const ALL_LINKS = [
   { href: '#services', label: 'Services' },
   { href: '#a-propos', label: 'À propos de nous' },
-  { href: '#portfolio', label: 'Réalisations' },
-  { href: '#tarifs', label: 'Tarifs' },
+  { href: '#portfolio', label: 'Réalisations', flag: 'NEXT_PUBLIC_ENABLE_REALISATIONS' },
+  { href: '#tarifs', label: 'Tarifs', flag: 'NEXT_PUBLIC_ENABLE_TARIFS' },
   { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'Contact' },
 ];
 
 export function Footer() {
+  const LINKS = ALL_LINKS.filter((link) => {
+    if (!link.flag) return true;
+    if (link.flag === 'NEXT_PUBLIC_ENABLE_REALISATIONS') {
+      return process.env.NEXT_PUBLIC_ENABLE_REALISATIONS === 'true';
+    }
+    if (link.flag === 'NEXT_PUBLIC_ENABLE_TARIFS') {
+      return process.env.NEXT_PUBLIC_ENABLE_TARIFS === 'true';
+    }
+    return true;
+  });
+
   return (
     <footer className="bg-cera-ink pt-16 pb-8 text-white">
       <div className="mx-auto max-w-6xl px-6">
@@ -59,3 +70,4 @@ export function Footer() {
     </footer>
   );
 }
+

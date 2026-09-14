@@ -5,17 +5,30 @@ import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { cn } from '@/utils/cn';
 
-const NAV_LINKS = [
-  { href: '#services', label: 'Services' },
+const ALL_NAV_LINKS = [
+  { href: '#services', label: 'Services', flag: 'NEXT_PUBLIC_SHOW_SERVICES' },
   { href: '#a-propos', label: 'À propos' },
-  { href: '#portfolio', label: 'Réalisations' },
-  { href: '#tarifs', label: 'Tarifs' },
+  { href: '#portfolio', label: 'Réalisations', flag: 'NEXT_PUBLIC_ENABLE_REALISATIONS' },
+  { href: '#tarifs', label: 'Tarifs', flag: 'NEXT_PUBLIC_ENABLE_TARIFS' },
   { href: '#faq', label: 'FAQ' },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const NAV_LINKS = ALL_NAV_LINKS.filter((link) => {
+    if (!link.flag) return true;
+    if (link.flag === 'NEXT_PUBLIC_ENABLE_REALISATIONS') {
+      return process.env.NEXT_PUBLIC_ENABLE_REALISATIONS === 'true';
+    }
+    if (link.flag === 'NEXT_PUBLIC_ENABLE_TARIFS') {
+      return process.env.NEXT_PUBLIC_ENABLE_TARIFS === 'true';
+    }
+    return true;
+  });
+
+
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
