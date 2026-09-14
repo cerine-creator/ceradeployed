@@ -30,17 +30,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true, data: { id: 'ok' } }, { status: 201 });
     }
 
-    const [lead] = await db
-      .insert(contactLeads)
-      .values({
-        name,
-        phone,
-        email: email || null,
-        social: social || null,
-        projectType,
-        message,
-      })
-      .returning({ id: contactLeads.id });
+    let leadId: string | null = null;
+
+    // Try DB insertion if configured, but do not block form submission if DB is absent/failing
+    try {
+      if (process.env.DATABASE_URL) {
+        const [lead] = await db
+          .insert(contactLeads)
+          .values({
+            name,
+            phone,
+            email: email || null,
+            social: social || null,
+            projectType,
+            message,
+          })
+          .returning({ id: contactLeads.id });
+        if (lead) leadId = lead.id;
+      }
+    } catch (dbErr) {
+      console.warn('[CONTACT API] DB insertion skipped or failed:', dbErr);
+    }
 
     // Send instant notification via Telegram Bot if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -48,7 +58,7 @@ export async function POST(request: NextRequest) {
     if (botToken && chatId) {
       const text = `📬 *Nouveau message client (Cera)*\n\n👤 *Nom:* ${name}\n📞 *Téléphone:* ${phone}\n📧 *Email:* ${email || 'Non renseigné'}\n📱 *Réseaux:* ${social || 'Non renseigné'}\n🚀 *Projet:* ${projectType}\n📝 *Message:* ${message}`;
 
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -87,7 +97,7 @@ export async function POST(request: NextRequest) {
       }).catch((err) => console.error('[RESEND EMAIL ERROR]', err));
     }
 
-    return NextResponse.json({ success: true, data: { id: lead.id } }, { status: 201 });
+    return NextResponse.json({ success: true, data: { id: leadId || 'ok' } }, { status: 201 });
   } catch (error) {
     return handleApiError(error);
   }
