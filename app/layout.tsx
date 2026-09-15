@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  verification: {
+    google: 'FhCQHFYy4g12yqpXRQ334yqh-s-hHlPVssollXV97Hk',
+  },
   openGraph: {
     type: 'website',
     url: '/',
@@ -41,12 +44,24 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        url: '/c_big_green_dot_light_1000.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/c_big_green_dot_dark_1000.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/c_big_green_dot_light_1000.png',
+        type: 'image/png',
+      },
+      {
         url: '/icon.svg',
         type: 'image/svg+xml',
       },
     ],
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    shortcut: '/c_big_green_dot_light_1000.png',
+    apple: '/c_big_green_dot_light_1000.png',
   },
 };
 
@@ -67,6 +82,18 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Cera',
+              alternateName: ['Cera Digital', 'Cera Algérie', 'Cera Solutions Digitales'],
+              url: 'https://ceradz.vercel.app',
+            }),
+          }}
+        />
         {process.env.NODE_ENV === 'production' && (
           <Script
             async
